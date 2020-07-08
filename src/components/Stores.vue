@@ -13,6 +13,10 @@
           <td>{{index}}</td>
           <td>{{item}}</td>
         </tr>
+        <tr>
+          <td><b>Total:</b></td>
+          <td><b>{{ storesTotalSum }}</b></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -35,6 +39,9 @@ export default {
   computed: {
     stores() {
       return this.$store.getters.getStores;
+    },
+    storesTotalSum() {
+      return this.$store.getters.getStoresTotalSum;
     }
   }
 }

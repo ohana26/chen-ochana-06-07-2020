@@ -1,28 +1,27 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <BoughtItemsPage></BoughtItemsPage>
+    <SideBar>
+      <router-view></router-view>
+    </SideBar>
   </div>
 </template>
 
 <script>
-import BoughtItemsPage from './pages/BoughtItemsPage'
+import SideBar from './components/SideBar.vue'
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-    BoughtItemsPage
+    SideBar
+  },
+  data() {
+    return {}
+  },
+  methods: {
+
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

@@ -33,7 +33,6 @@ export default {
   },
   created() {
     this.tabs = this.$children;
-    console.log("this.tabs ", this.tabs)
   },
   methods: {
     selectTab(selectedTab) {

@@ -16,7 +16,7 @@
           <td>{{item.store}}</td>
           <td>{{item.price}}</td>
           <td>{{item.date}}</td>
-          <td><button @click='Received(item)' class='btn btn-primary'>Received</button></td>
+          <td v-if="!isReceived"><button @click='Received(item)' class='btn btn-primary'>Received</button></td>
         </tr>
       </tbody>
     </table>
@@ -27,7 +27,8 @@
 export default {
   props: {
     name: {required: true},
-    selected: {default: false}
+    selected: {default: false},
+    isReceived: {default: false}
   },
   data() {
     return {
@@ -39,11 +40,17 @@ export default {
   },
   computed: {
     items() {
-      let storeItems = this.$store.getters.itemToItemList;
+      let storeItems = this.$store.getters.getItemToItemList;
+      if (this.isReceived) {
+        storeItems = this.$store.getters.getReceivedItems;
+      }
       return this.sortedByDateItems(storeItems);
     },
   },
   methods: {
+    Received(item) {
+      this.$store.commit("received", item);
+    },
     sortedByDateItems(items) {
       let itemsToSort = items;
       let sortedItems = itemsToSort.sort((a, b) => {
