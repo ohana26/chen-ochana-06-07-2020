@@ -4,6 +4,10 @@ import ReceivedListPage from '../pages/ReceivedListPage.vue';
 
 const routes = [
   {
+    path: '/',
+    component: BoughtItemsPage
+  },
+  {
     path: '/list',
     component: BoughtItemsPage
   },

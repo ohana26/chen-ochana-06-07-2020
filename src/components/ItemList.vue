@@ -16,7 +16,8 @@
           <td>{{item.store}}</td>
           <td>{{item.price}}</td>
           <td>{{item.date}}</td>
-          <td v-if="!isReceived"><button @click='Received(item)' class='btn btn-primary'>Received</button></td>
+          <td v-if="!isReceived"><button @click='received(item)' class='btn btn-primary'>Received</button></td>
+          <td v-if="isReceived"><button @click='remove(item)' class='btn btn-primary'>Remove</button></td>
         </tr>
       </tbody>
     </table>
@@ -48,8 +49,11 @@ export default {
     },
   },
   methods: {
-    Received(item) {
+    received(item) {
       this.$store.commit("received", item);
+    },
+    remove(item) {
+      this.$store.commit("remove", item);
     },
     sortedByDateItems(items) {
       let itemsToSort = items;

@@ -1,6 +1,15 @@
 <template>
   <div class="container" v-show="isActive">
     <h1>Stores</h1>
+    <div class="row">
+      <div class="col-md-6 form-group">
+        <label for="hours">Calculate by rate:</label>
+        <select v-model="myRate" class="form-control" id="houerPerDay" aria-describedby="Departure time from hotel" placeholder="Departure time from hotel">
+          <option disabled :value="myRate">{{myRate}}</option>
+          <option v-for="(rate, type) in exchangeRate" :value="type" :key="type">{{type}}</option>
+        </select>
+      </div>
+    </div>
     <table class="table">
       <thead>
         <tr>
@@ -15,7 +24,7 @@
         </tr>
         <tr>
           <td><b>Total:</b></td>
-          <td><b>{{ storesTotalSum }}</b></td>
+          <td><b>{{ storesTotalSum }} ({{myRate}})</b></td>
         </tr>
       </tbody>
     </table>
@@ -31,19 +40,39 @@ export default {
   data() {
     return {
       isActive: false,
+      exchangeRate: {},
+      myRate: "1"
     };
   },
   mounted() {
     this.isActive = this.selected;
+    this.getCurrencyDataFromServer();
   },
   computed: {
     stores() {
       return this.$store.getters.getStores;
     },
     storesTotalSum() {
-      return this.$store.getters.getStoresTotalSum;
+      let sum = this.$store.getters.getStoresTotalSum;
+      if (this.exchangeRate[this.myRate]) {
+        sum = sum * parseFloat(this.exchangeRate[this.myRate])
+      }
+      return sum;
     }
-  }
+  },
+  methods: {
+    getCurrencyDataFromServer() {
+      let outerThis = this;
+      this.axios.get("https://api.exchangeratesapi.io/latest").then((response) => {
+        outerThis.exchangeRate = response.data.rates;
+        outerThis.myRate = response.data.base;
+      }).catch(err => {
+        if (err) {
+          alert("cannot get exchange rate API");
+        }
+      })
+    }
+  },
 }
 </script>
 

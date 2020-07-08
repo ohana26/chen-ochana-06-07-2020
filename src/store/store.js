@@ -18,15 +18,43 @@ let state = {
             "name": "iPhone 12",
             "store": "ebay",
             "price": "29.55",
-            "date": "02/12/2020",
+            "date": "02/25/2020",
             "id": "2"
         },
         {
             "name": "iPhone 10",
             "store": "ebay",
             "price": "29.55",
-            "date": "02/12/2020",
+            "date": "02/23/2020",
             "id": "3"
+        },
+        {
+            "name": "iPhone 10",
+            "store": "amazon",
+            "price": "29.55",
+            "date": "02/12/2020",
+            "id": "4"
+        },
+        {
+            "name": "shiomi",
+            "store": "walla",
+            "price": "291.55",
+            "date": "02/11/2020",
+            "id": "5"
+        },
+        {
+            "name": "iPhone 6",
+            "store": "ebay",
+            "price": "277.5775",
+            "date": "07/12/2020",
+            "id": "6"
+        },
+        {
+            "name": "bamba",
+            "store": "ebay",
+            "price": "297.5577",
+            "date": "05/12/2020",
+            "id": "7"
         }
     ],
 
