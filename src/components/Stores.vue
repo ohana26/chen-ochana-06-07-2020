@@ -2,9 +2,9 @@
   <div class="container" v-show="isActive">
     <h1>Stores</h1>
     <div class="row">
-      <div class="col-md-6 form-group">
-        <label for="hours">Calculate by rate:</label>
-        <select v-model="myRate" class="form-control" id="houerPerDay" aria-describedby="Departure time from hotel" placeholder="Departure time from hotel">
+      <div class="col-md-6 form-group container">
+        <label for="rate">Calculate by rate:</label>
+        <select v-model="myRate" class="form-control select-responsive" id="rate">
           <option disabled :value="myRate">{{myRate}}</option>
           <option v-for="(rate, type) in exchangeRate" :value="type" :key="type">{{type}}</option>
         </select>
@@ -77,4 +77,13 @@ export default {
 </script>
 
 <style>
+@media only screen and (max-width: 760px),
+  (min-width: 768px) and (max-width: 1024px) {
+  .select-responsive {
+    width: auto;
+    height: auto;
+    max-height: 150px;
+    max-width: 150px;
+  }
+}
 </style>
